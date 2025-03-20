@@ -2,10 +2,30 @@ site_name: QM Documentation
 
 repo_url: https://github.com/containers/qm
 repo_name: qm
+edit_uri: blob/main/docs/docs/
 
 copyright: Copyright Contributors to the QM project
 nav:
   - Home: index.md
+  - Getting Started:
+    - Building the RPM manually: getting_started/building_rpm_manually.md
+    - Building CentOS AutoSD and QM manually: getting_started/build_qm_and_centos_autosd_manually.md
+    - Useful Commands: getting_started/useful_commands.md
+  - OOM score adjustment:
+    - How the OOM score adjustment is used in qm: oom_score/oom_score_adjustment.md
+    - OOM score adjustment diagram: oom_score/asci_diagram.md
+  - Subpackages:
+    - Subpackages: subpackages/subpackages.md
+    - Building QM subpackages: subpackages/subpackages_build.md
+    - Sample QM subpackages:
+      - QM subpackage ROS2: subpackages/subpackages_ros2.md  
+      - QM subpackage KVM: subpackages/subpackages_kvm.md  
+      - QM subpackage Sound: subpackages/subpackages_sound.md  
+      - QM subpackage Video: subpackages/subpackages_video.md  
+      - Creating Your Own Drop-In QM Sub-Package: subpackages/subpackages_custom.md
+    - Installing and removing QM subpackages: subpackages/subpackages_install.md
+  - Resources: resources.md
+  - Contributing: contributing.md
 
 theme:
   name: material
@@ -23,7 +43,7 @@ markdown_extensions:
   - smarty
   - admonition
   - pymdownx.snippets:
-      base_path: ["doc"]
+      base_path: ["docs"]
       check_paths: True
   - pymdownx.superfences:
   - pymdownx.tabbed:

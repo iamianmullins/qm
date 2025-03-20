@@ -564,7 +564,7 @@ If we consider the example of ASIL (Automotive Safety Integrity Level) applicati
 
 ## Examples
 
-Looking for quadlet examples files? See our [docs dir](docs/quadlet-examples/).
+Looking for quadlet examples files? See our [docs dir](docs/docs/quadlet-examples/).
 
 ## Development
 
