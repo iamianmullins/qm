@@ -1,16 +1,3 @@
-# Topics
-
-1. [QM Sub-Packages](#qm-sub-packages)
-    - [Key Features of QM Sub-Packages](#key-features-of-qm-sub-packages)
-    - [Building QM Sub-Packages](#building-qm-sub-packages)
-    - [Installing QM Sub-Packages](#installing-qm-sub-packages)
-    - [Removing QM Sub-Packages](#removing-qm-sub-packages)
-    - [Creating Your Own Drop-In QM Sub-Package](#creating-your-own-drop-in-qm-sub-package)
-    - [QM Sub-Package ROS2](#qm-sub-package-ros2)
-    - [QM Sub-Package KVM](#qm-sub-package-kvm)
-    - [QM Sub-Package Sound](#qm-sub-package-sound)
-    - [QM Sub-Package Video](#qm-sub-package-video)
-
 ## QM Sub-packages
 
 The qm project is designed to provide a flexible and modular environment for managing

@@ -2,10 +2,21 @@ site_name: QM Documentation
 
 repo_url: https://github.com/containers/qm
 repo_name: qm
+edit_uri: blob/main/doc/docs/
 
 copyright: Copyright Contributors to the QM project
 nav:
-  - Home: index.md
+  - Home:
+    - QM: index.md
+    - SELinux Policy: selinux_policy.md
+    - BlueChi: bluechi.md
+  - OOM-Score Adjustment: oom_score_adjustment.md
+  - Subpackages: devel/experimental/SUBPACKAGES.md
+  - Tutorials: 
+      - Network Modes in Podman: tutorials/NETWORK.md
+      - Real-time removal of sched_* blockage via seccomp: tutorials/realtime.md
+  - Resources: resources.md
+  - Contributing: contributing.md
 
 theme:
   name: material
