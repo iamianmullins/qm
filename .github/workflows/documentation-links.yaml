@@ -1,0 +1,20 @@
+name: readthedocs/actions
+on:
+  pull_request:
+    types:
+      - opened
+      - edited
+      - reopened
+      - synchronize
+    paths:
+      - "docs/**"
+
+jobs:
+  documentation-links:
+    permissions:
+      pull-requests: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: readthedocs/actions/preview@v1
+        with:
+          project-slug: "test-branch"
