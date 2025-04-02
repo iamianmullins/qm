@@ -1,0 +1,25 @@
+# .github/workflows/documentation-links.yml
+
+name: readthedocs/actions
+on:
+  pull_request:
+    types:
+      - opened
+      - edited
+      - reopened
+      - synchronize
+    # Execute this action only on PRs that touch
+    # documentation files.
+    paths:
+      - "docs/**"
+
+permissions:
+  pull-requests: write
+
+jobs:
+  documentation-links:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: readthedocs/actions/preview@v1
+        with:
+          project-slug: "readthedocs-preview"
