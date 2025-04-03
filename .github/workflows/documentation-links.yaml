@@ -9,10 +9,9 @@ on:
     paths:
       - "docs/**"
 
-permissions:
-  pull-requests: write
-
 jobs:
+  permissions:
+    pull-requests: write
   documentation-links:
     runs-on: ubuntu-latest
     steps:
