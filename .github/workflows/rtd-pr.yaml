@@ -10,7 +10,9 @@ on:
       - "docs/**"
 
 permissions:
+  contents: write
   pull-requests: write
+  repository-projects: write
 
 jobs:
   documentation-links:
@@ -18,4 +20,4 @@ jobs:
     steps:
       - uses: readthedocs/actions/preview@v1
         with:
-          project-slug: "qm"
+          project-slug: "rtd-im"

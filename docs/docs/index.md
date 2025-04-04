@@ -20,3 +20,5 @@ Software install into the qm environment under /usr/lib/qm/rootfs will
 be automatically isolated from the host. But if developers want to further
 isolate these processes from other processes in the QM they can use container
 tools like Podman to further isolate.
+
+Friday
