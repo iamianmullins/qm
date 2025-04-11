@@ -20,7 +20,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PR_NUMBER: ${{ github.event.pull_request.number }}
-          PROJECT_SLUG: qm
+          PROJECT_SLUG: test-im
         run: |
           curl -X POST -H "Authorization: Bearer $GITHUB_TOKEN" \
           -d '{"body":":book: Documentation preview: https://${{env.PROJECT_SLUG}}--${{env.PR_NUMBER}}.org.readthedocs.build/en/${{env.PR_NUMBER}}/ :book:"}' \
