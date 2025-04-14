@@ -28,4 +28,4 @@ jobs:
             pymdown-extensions
 
       - name: Build MkDocs site
-        run: mkdocs build --strict
+        run: mkdocs build -f docs/mkdocs.yml --strict
