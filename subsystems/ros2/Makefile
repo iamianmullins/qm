@@ -2,6 +2,8 @@ RPM_TOPDIR ?= $(PWD)/rpmbuild
 VERSION ?= $(shell cat VERSION)
 ROOTDIR ?= $(PWD)
 SPECFILE_SUBPACKAGE_ROS2_ROLLING ?= ${ROOTDIR}/rpm/ros2/ros2_rolling.spec
+PACKAGE_NAME = qm-ros2
+NV ?= ${PACKAGE_NAME}-${VERSION}
 
 .PHONY: dist
 dist: ##             - Creates the QM ros2 package
@@ -9,8 +11,8 @@ dist: ##             - Creates the QM ros2 package
 		--dereference \
                 --transform 's|subsystems/ros2/Makefile|Makefile|' \
                 --transform 's|rpm/ros2/ros2_rolling.spec|ros2_rolling.spec|' \
-		--transform s/qm/qm-ros2-${VERSION}/ \
-		-f /tmp/qm-ros2-${VERSION}.tar.gz \
+		--transform s/qm/${NV}/ \
+		-f /tmp/${NV}.tar.gz \
                 ../qm/rpm/ros2/ros2_rolling.spec \
                 ../qm/subsystems/ros2/Makefile \
                 ../qm/tools/version-update \
@@ -26,9 +28,12 @@ dist: ##             - Creates the QM ros2 package
 ros2: dist ##          - Creates a local RPM package, useful for development
 	cd $(ROOTDIR) && mkdir -p ${RPM_TOPDIR}/{RPMS,SRPMS,BUILD,SOURCES}
 	cd $(ROOTDIR) && tools/version-update -v ${VERSION}
-	cd $(ROOTDIR) && cp ./rpm/qm-ros2-${VERSION}.tar.gz ${RPM_TOPDIR}/SOURCES
+	cd $(ROOTDIR) && cp ./rpm/${NV}.tar.gz ${RPM_TOPDIR}/SOURCES
 	rpmbuild -ba \
 		--define="_topdir ${RPM_TOPDIR}" \
 		--define="version ${VERSION}" \
 		${SPECFILE_SUBPACKAGE_ROS2_ROLLING}
-
+	if [ ! -f ${RPM_TOPDIR}/RPMS/noarch/${NV}*.noarch.rpm ]; then \
+		echo "RPM build failed"; \
+		exit 1; \
+	fi

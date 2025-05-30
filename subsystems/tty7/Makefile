@@ -2,6 +2,8 @@ RPM_TOPDIR ?= $(PWD)/rpmbuild
 VERSION ?= $(shell cat VERSION)
 ROOTDIR ?= $(PWD)
 SPECFILE_SUBPACKAGE_TTY7 ?= ${ROOTDIR}/rpm/tty7/tty7.spec
+PACKAGE_NAME = qm-mount-bind-tty7
+NV ?= ${PACKAGE_NAME}-${VERSION}
 
 .PHONY: dist
 dist: ##             - Creates the QM tty7 package
@@ -9,8 +11,8 @@ dist: ##             - Creates the QM tty7 package
 		--dereference \
 		--transform 's|subsystems/tty7/Makefile|Makefile|' \
 		--transform 's|rpm/tty7/tty7.spec|tty7.spec|' \
-		--transform s/qm/qm-tty7-${VERSION}/ \
-		-f /tmp/qm-tty7-${VERSION}.tar.gz \
+		--transform s/qm/${NV}/ \
+		-f /tmp/${NV}.tar.gz \
                 ../qm/rpm/tty7/tty7.spec \
 		../qm/subsystems/tty7/Makefile \
 		../qm/tools/version-update \
@@ -19,15 +21,18 @@ dist: ##             - Creates the QM tty7 package
 		../qm/SECURITY.md \
 		../qm/LICENSE \
 		../qm/etc/containers/systemd/qm.container.d/qm_dropin_mount_bind_tty7.conf
-	cd $(ROOTDIR) && mv /tmp/qm-tty7-${VERSION}.tar.gz ./rpm
+	cd $(ROOTDIR) && mv /tmp/${NV}.tar.gz ./rpm
 
 .PHONY: tty7
 tty7: dist ##             - Creates a local RPM package, useful for development
 	cd $(ROOTDIR) && mkdir -p ${RPM_TOPDIR}/{RPMS,SRPMS,BUILD,SOURCES}
 	cd $(ROOTDIR) && tools/version-update -v ${VERSION}
-	cd $(ROOTDIR) && cp ./rpm/qm-tty7-${VERSION}.tar.gz ${RPM_TOPDIR}/SOURCES
+	cd $(ROOTDIR) && cp ./rpm/${NV}.tar.gz ${RPM_TOPDIR}/SOURCES
 	rpmbuild -ba \
 		--define="_topdir ${RPM_TOPDIR}" \
 		--define="version ${VERSION}" \
 		${SPECFILE_SUBPACKAGE_TTY7}
-
+	if [ ! -f ${RPM_TOPDIR}/RPMS/noarch/${NV}*.noarch.rpm ]; then \
+		echo "RPM build failed"; \
+		exit 1; \
+	fi
