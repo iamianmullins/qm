@@ -1,7 +1,7 @@
 RPM_TOPDIR ?= $(PWD)/rpmbuild
 VERSION ?= $(shell cat VERSION)
 ROOTDIR ?= $(PWD)
-SPECFILE_SUBPACKAGE_VIDEO ?= ${ROOTDIR}/rpm/video/video.spec
+SPECFILE_SUBPACKAGE_VIDEOFAIL ?= ${ROOTDIR}/rpm/video/video.spec
 
 .PHONY: dist
 dist: ##             - Creates the QM video package
