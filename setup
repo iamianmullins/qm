@@ -303,8 +303,9 @@ case "$1" in
 
     if [ "$SYSTEMCTL_SKIP" == "N" ]; then
 	    systemctl daemon-reload
-	    systemctl start qm.service
+	    # systemctl start qm.service
             if [ "$(systemctl is-active qm.service)" != "active" ]; then
+               echo "MAJOR PROBLEM HERE"
                journal=$(journalctl --no-pager -xu qm.service)
                echo QM service is not up details:
                echo "$journal"
@@ -312,6 +313,7 @@ case "$1" in
             fi
     else
       /usr/libexec/podman/quadlet /run/systemd/generator/
+      echo "All running okey dokey!"
     fi
 	;;
 esac
